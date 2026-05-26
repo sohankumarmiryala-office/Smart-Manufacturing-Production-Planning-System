@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="sidebar-brand">
+            <i class='bx bx-cog bx-spin'></i>
+            <span>SmartFactory</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class='bx bxs-dashboard'></i> Dashboard</a></li>
+            <li><a href="product.html"><i class='bx bx-package'></i> Product Master</a></li>
+            <li><a href="production.html"><i class='bx bx-barcode-reader'></i> Production Orders</a></li>
+            <li><a href="machine.html"><i class='bx bx-broadcast'></i> Machine Monitoring</a></li>
+            <li><a href="quality.html"><i class='bx bx-check-shield'></i> Quality Inspection</a></li>
+            <li><a href="maintenance.html"><i class='bx bx-wrench'></i> Maintenance Orders</a></li>
+            <li><a href="user.html" class="active"><i class='bx bx-user-pin'></i> User Management</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <h1>Access Management</h1>
+            <div class="user-profile">
+                <i class='bx bx-user-circle'></i>
+                <span>Admin User</span>
+            </div>
+        </header>
+
+        <div class="content-body">
+            <section class="view-section active">
+                <div class="form-card">
+                    <h2><i class='bx bx-user-pin'></i> Provision New User Profile</h2>
+                    
+                    <form id="user-provision-form" class="factory-form">
+                        
+                        <div class="form-group">
+                            <label for="username">Corporate Username</label>
+                            <input type="email" id="username" name="username" placeholder="j.doe@factory.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="user-role">System Authorization Role</label>
+                            <select id="user-role" name="role" required>
+                                <option value="" disabled selected>Select role scope...</option>
+                                <option value="Admin">System Administrator</option>
+                                <option value="Planner">Production Planner</option>
+                                <option value="Inspector">Quality Inspector</option>
+                                <option value="Engineer">Maintenance Engineer</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Add User Profile</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="toast-notification" class="toast hidden"></div>
+    <script src="../static/js/script.js"></script>
+</body>
+</html>

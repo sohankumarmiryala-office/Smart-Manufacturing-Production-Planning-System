@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Inspection</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+ 
+    <nav class="sidebar">
+        <div class="sidebar-brand">
+            <i class='bx bx-cog bx-spin'></i>
+            <span>SmartFactory</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class='bx bxs-dashboard'></i> Dashboard</a></li>
+            <li><a href="product.html"><i class='bx bx-package'></i> Product Master</a></li>
+            <li><a href="production.html"><i class='bx bx-barcode-reader'></i> Production Orders</a></li>
+            <li><a href="machine.html"><i class='bx bx-broadcast'></i> Machine Monitoring</a></li>
+            <li><a href="quality.html" class="active"><i class='bx bx-check-shield'></i> Quality Inspection</a></li>
+            <li><a href="maintenance.html"><i class='bx bx-wrench'></i> Maintenance Orders</a></li>
+            <li><a href="user.html"><i class='bx bx-user-pin'></i> User Management</a></li>
+        </ul>
+    </nav>
+ 
+    <main class="main-content">
+        <header class="top-bar">
+            <h1>Quality Assurance</h1>
+            <div class="user-profile">
+                <i class='bx bx-user-circle'></i>
+                <span>Admin User</span>
+            </div>
+        </header>
+ 
+        <div class="content-body">
+            <section class="view-section active">
+                <div class="form-card">
+                    <h2><i class='bx bx-check-shield'></i> Quality Inspection Entry</h2>
+                    <form class="factory-form">
+                        <div class="form-group">
+                            <label>Production Order ID</label>
+                            <input type="text" placeholder="PO-XXXXX" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Defect Count</label>
+                            <input type="number" min="0" value="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Inspection Verdict</label>
+                            <select required>
+                                <option value="" disabled selected>Select verdict...</option>
+                                <option value="PASS">✅ PASS</option>
+                                <option value="FAIL">❌ FAIL</option>
+                                <option value="REWORK">🔄 REWORK</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Inspection Report</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+ 
+    <div id="toast-notification" class="toast hidden"></div>
+    <script src="../static/js/script.js"></script>
+</body>
+</html>
