@@ -1,25 +1,13 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Machine Monitoring</title>
-=======
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maintenance Management | SmartFactory</title>
->>>>>>> c92ad4f (Added maintenance page)
     <link rel="stylesheet" href="../static/css/style.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
-<<<<<<< HEAD
- 
-=======
->>>>>>> c92ad4f (Added maintenance page)
     <nav class="sidebar">
         <div class="sidebar-brand">
             <i class='bx bx-cog bx-spin'></i>
@@ -29,18 +17,6 @@
             <li><a href="index.html"><i class='bx bxs-dashboard'></i> Dashboard</a></li>
             <li><a href="product.html"><i class='bx bx-package'></i> Product Master</a></li>
             <li><a href="production.html"><i class='bx bx-barcode-reader'></i> Production Orders</a></li>
-<<<<<<< HEAD
-            <li><a href="machine.html" class="active"><i class='bx bx-broadcast'></i> Machine Monitoring</a></li>
-            <li><a href="quality.html"><i class='bx bx-check-shield'></i> Quality Inspection</a></li>
-            <li><a href="maintenance.html"><i class='bx bx-wrench'></i> Maintenance Orders</a></li>
-            <li><a href="user.html"><i class='bx bx-user-pin'></i> User Management</a></li>
-        </ul>
-    </nav>
- 
-    <main class="main-content">
-        <header class="top-bar">
-            <h1>Telemetry & Monitoring</h1>
-=======
             <li><a href="machine.html"><i class='bx bx-broadcast'></i> Machine Monitoring</a></li>
             <li><a href="quality.html"><i class='bx bx-check-shield'></i> Quality Inspection</a></li>
             <li><a href="maintenance.html" class="active"><i class='bx bx-wrench'></i> Maintenance Orders</a></li>
@@ -51,45 +27,16 @@
     <main class="main-content">
         <header class="top-bar">
             <h1>Maintenance Management</h1>
->>>>>>> c92ad4f (Added maintenance page)
             <div class="user-profile">
                 <i class='bx bx-user-circle'></i>
                 <span>Admin User</span>
             </div>
         </header>
-<<<<<<< HEAD
- 
-        <div class="content-body">
-            <section class="view-section active">
-                <div class="form-card">
-                    <h2><i class='bx bx-broadcast'></i> Machine Telemetry Update</h2>
-                    <form class="factory-form">
-                        <div class="form-group">
-                            <label>Machine ID</label>
-                            <input type="text" placeholder="e.g. CNC-04" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Operational Status</label>
-                            <select required>
-                                <option value="" disabled selected>Select status...</option>
-                                <option value="RUNNING">🟢 RUNNING</option>
-                                <option value="IDLE">🟡 IDLE</option>
-                                <option value="BREAKDOWN">🔴 BREAKDOWN</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Update Telemetry Status</button>
-                    </form>
-                </div>
-            </section>
-        </div>
-    </main>
- 
-=======
 
         <div class="content-body">
             <div class="form-card">
                 <h2><i class='bx bx-plus-circle'></i> New Maintenance Work Order</h2>
-                <form th:action="@{/api/maintenance/create}" method="post" class="factory-form">
+                <form action="/api/maintenance/create" method="post" class="factory-form">
                     <div class="form-group">
                         <label>MACHINE ID REFERENCE</label>
                         <input type="number" name="machineId" placeholder="e.g. 104" required>
@@ -121,7 +68,7 @@
 
             <div class="form-card">
                 <h2><i class='bx bx-cart-alt'></i> Issue Spare Parts</h2>
-                <form th:action="@{/api/maintenance/issueSpare}" method="post" class="factory-form">
+                <form action="/api/maintenance/issueSpare" method="post" class="factory-form">
                     <div class="form-group">
                         <label>WORK ORDER ID REFERENCE</label>
                         <input type="number" name="workOrderId" placeholder="e.g. 5001" required>
@@ -153,23 +100,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="order : ${workOrders}">
-                            <td th:text="${'#' + order.workOrderId}">#10</td>
-                            <td th:text="${order.machineId}">CNC-01</td>
+                        <tr>
+                            <td>#101</td>
+                            <td>CNC-01</td>
+                            <td><span class="status-badge open">OPEN</span></td>
                             <td>
-                                <span th:text="${order.workOrderStatus}" 
-                                      class="status-badge"
-                                      th:classappend="${order.workOrderStatus.toLowerCase()}">
-                                    OPEN
-                                </span>
+                                <button class="btn-table">Assign</button>
                             </td>
+                        </tr>
+                        <tr>
+                            <td>#102</td>
+                            <td>ROBOT-ARM</td>
+                            <td><span class="status-badge progress">IN_PROGRESS</span></td>
                             <td>
-                                <form th:if="${order.workOrderStatus == 'OPEN'}" th:action="@{/api/maintenance/assign/{id}(id=${order.workOrderId})}" method="post">
-                                    <button class="btn-table">Assign</button>
-                                </form>
-                                <form th:if="${order.workOrderStatus == 'IN_PROGRESS'}" th:action="@{/api/maintenance/close/{id}(id=${order.workOrderId})}" method="post">
-                                    <button class="btn-table btn-success">Close</button>
-                                </form>
+                                <button class="btn-table btn-success">Close</button>
                             </td>
                         </tr>
                     </tbody>
@@ -178,7 +122,6 @@
         </div>
     </main>
 
->>>>>>> c92ad4f (Added maintenance page)
     <div id="toast-notification" class="toast hidden"></div>
     <script src="../static/js/script.js"></script>
 </body>
