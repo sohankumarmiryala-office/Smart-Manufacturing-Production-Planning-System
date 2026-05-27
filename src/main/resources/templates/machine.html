@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Monitoring & Downtime Tracking</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="sidebar-brand">
+            <i class='bx bx-cog bx-spin'></i>
+            <span>SmartFactory</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class='bx bxs-dashboard'></i> Dashboard</a></li>
+            <li><a href="product.html"><i class='bx bx-package'></i> Product Master</a></li>
+            <li><a href="production.html"><i class='bx bx-barcode-reader'></i> Production Orders</a></li>
+            <li><a href="machine.html" class="active"><i class='bx bx-broadcast'></i> Machine Monitoring</a></li>
+            <li><a href="quality.html"><i class='bx bx-check-shield'></i> Quality Inspection</a></li>
+            <li><a href="maintenance.html"><i class='bx bx-wrench'></i> Maintenance Orders</a></li>
+            <li><a href="user.html"><i class='bx bx-user-pin'></i> User Management</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <h1>Telemetry & Monitoring</h1>
+            <div class="user-profile">
+                <i class='bx bx-user-circle'></i>
+                <span>Admin User</span>
+            </div>
+        </header>
+
+        <div class="content-body">
+            <section class="view-section active">
+                <div class="form-card">
+                    <h2><i class='bx bx-broadcast'></i> Log Machine Utilization & Telemetry</h2>
+                    <form class="factory-form" id="factory-form" action="/Machine/RecordLog" method="POST">
+                        
+                        <div class="form-group">
+                            <label for="machineid">Machine ID Reference</label>
+                            <input type="number" id="machineid" name="machineid" placeholder="e.g., 104" min="1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="logDate">Log Production Date</label>
+                            <input type="date" id="logDate" name="logDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="runtimeHours">Runtime Hours</label>
+                            <input type="number" id="runtimeHours" name="runtimeHours" step="0.1" min="0.0" max="24.0" placeholder="e.g., 6.5" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="downtimeHours">Downtime Hours</label>
+                            <input type="number" id="downtimeHours" name="downtimeHours" step="0.1" min="0.0" max="24.0" placeholder="e.g., 1.5" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="machineStatus">Operational Status Profile</label>
+                            <select id="machineStatus" name="machineStatus" required>
+                                <option value="" disabled selected>Select active profile...</option>
+                                <option value="RUNNING">🟢 RUNNING</option>
+                                <option value="IDLE">🟡 IDLE</option>
+                                <option value="BREAKDOWN">🔴 BREAKDOWN</option>
+                                <option value="MAINTENANCE">🔧 MAINTENANCE</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group hidden" id="reasonGroup">
+                            <label for="downtimeReason">Downtime Reason / Fault Categorization</label>
+                            <input type="text" id="downtimeReason" name="downtimeReason" placeholder="e.g., Spindle Calibration Overheating">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Commit Telemetry Log Entries</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="toast-notification" class="toast hidden"></div>
+    <script src="../static/js/script.js"></script>
+</body>
+</html>
