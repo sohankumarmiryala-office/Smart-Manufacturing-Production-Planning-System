@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance Management | SmartFactory</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="sidebar-brand">
+            <i class='bx bx-cog bx-spin'></i>
+            <span>SmartFactory</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class='bx bxs-dashboard'></i> Dashboard</a></li>
+            <li><a href="product.html"><i class='bx bx-package'></i> Product Master</a></li>
+            <li><a href="production.html"><i class='bx bx-barcode-reader'></i> Production Orders</a></li>
+            <li><a href="machine.html"><i class='bx bx-broadcast'></i> Machine Monitoring</a></li>
+            <li><a href="quality.html"><i class='bx bx-check-shield'></i> Quality Inspection</a></li>
+            <li><a href="maintenance.html" class="active"><i class='bx bx-wrench'></i> Maintenance Orders</a></li>
+            <li><a href="user.html"><i class='bx bx-user-pin'></i> User Management</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <h1>Maintenance Management</h1>
+            <div class="user-profile">
+                <i class='bx bx-user-circle'></i>
+                <span>Admin User</span>
+            </div>
+        </header>
+
+        <div class="content-body">
+            <div class="form-card">
+                <h2><i class='bx bx-plus-circle'></i> New Maintenance Work Order</h2>
+                <form action="/api/maintenance/create" method="post" class="factory-form">
+                    <div class="form-group">
+                        <label>MACHINE ID REFERENCE</label>
+                        <input type="number" name="machineId" placeholder="e.g. 104" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>MAINTENANCE CATEGORY</label>
+                        <select name="maintenanceType" required>
+                            <option value="">-- Select Type --</option>
+                            <option value="PREVENTIVE">PREVENTIVE</option>
+                            <option value="BREAKDOWN">BREAKDOWN</option>
+                            <option value="CALIBRATION">CALIBRATION</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>SCHEDULED DATE</label>
+                        <input type="date" name="scheduledDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>TECHNICIAN ASSIGNMENT</label>
+                        <input type="number" name="technicianId" placeholder="Staff ID">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Schedule Work Order</button>
+                </form>
+            </div>
+
+            <div class="form-card">
+                <h2><i class='bx bx-cart-alt'></i> Issue Spare Parts</h2>
+                <form action="/api/maintenance/issueSpare" method="post" class="factory-form">
+                    <div class="form-group">
+                        <label>WORK ORDER ID REFERENCE</label>
+                        <input type="number" name="workOrderId" placeholder="e.g. 5001" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>PART NAME / CODE</label>
+                        <input type="text" name="partName" placeholder="e.g. Aluminum Housing" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>QUANTITY REQUIRED</label>
+                        <input type="number" name="quantity" value="1" min="1">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Commit Spare Issue</button>
+                </form>
+            </div>
+
+            <div class="form-card">
+                <h2><i class='bx bx-list-check'></i> Recent Work Orders</h2>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Machine</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#101</td>
+                            <td>CNC-01</td>
+                            <td><span class="status-badge open">OPEN</span></td>
+                            <td>
+                                <button class="btn-table">Assign</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#102</td>
+                            <td>ROBOT-ARM</td>
+                            <td><span class="status-badge progress">IN_PROGRESS</span></td>
+                            <td>
+                                <button class="btn-table btn-success">Close</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <div id="toast-notification" class="toast hidden"></div>
+    <script src="../static/js/script.js"></script>
+</body>
+</html>
