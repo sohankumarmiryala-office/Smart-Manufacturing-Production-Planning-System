@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Management</title>
+    <title>SmartFactory - Access Management</title>
     <link rel="stylesheet" href="../static/css/style.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
-
+ 
     <nav class="sidebar">
         <div class="sidebar-brand">
             <i class='bx bx-cog bx-spin'></i>
@@ -24,22 +24,28 @@
             <li><a href="user.html" class="active"><i class='bx bx-user-pin'></i> User Management</a></li>
         </ul>
     </nav>
-
+ 
     <main class="main-content">
         <header class="top-bar">
-            <h1>Access Management</h1>
+             <h1>Access Management</h1>
             <div class="user-profile">
                 <i class='bx bx-user-circle'></i>
                 <span>Admin User</span>
             </div>
         </header>
-
+ 
         <div class="content-body">
             <section class="view-section active">
+                
+                <div class="welcome-card" style="margin-bottom: 32px;">
+                    <h2>System Identity & Access Management</h2>
+                    <p>Provision corporate personnel profiles and map authorization access tokens to specific manufacturing business units. Assign security operational roles across the shop floor system architecture.</p>
+                </div>
+
                 <div class="form-card">
                     <h2><i class='bx bx-user-pin'></i> Provision New User Profile</h2>
                     
-                    <form id="user-provision-form" class="factory-form">
+                    <form id="factory-form" class="factory-form">
                         
                         <div class="form-group">
                             <label for="username">Corporate Username</label>
@@ -50,21 +56,33 @@
                             <label for="user-role">System Authorization Role</label>
                             <select id="user-role" name="role" required>
                                 <option value="" disabled selected>Select role scope...</option>
-                                <option value="Admin">System Administrator</option>
+                                <option value="Admin">System Administrator (Admin)</option>
                                 <option value="Planner">Production Planner</option>
+                                <option value="Supervisor">Shop Floor Supervisor</option>
                                 <option value="Inspector">Quality Inspector</option>
                                 <option value="Engineer">Maintenance Engineer</option>
                             </select>
                         </div>
-                        
+
+                        <div class="hidden">
+                            <select id="machineStatus">
+                                <option value="RUNNING" selected>RUNNING</option>
+                                <option value="BREAKDOWN">BREAKDOWN</option>
+                            </select>
+                            <div id="reasonGroup" class="hidden">
+                                <input type="text" id="downtimeReason">
+                            </div>
+                        </div>
+                       
                         <button type="submit" class="btn btn-primary">Add User Profile</button>
                     </form>
                 </div>
             </section>
         </div>
     </main>
-
+ 
     <div id="toast-notification" class="toast hidden"></div>
+
     <script src="../static/js/script.js"></script>
 </body>
 </html>
