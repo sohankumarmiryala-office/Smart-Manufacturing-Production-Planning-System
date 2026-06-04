@@ -1,4 +1,7 @@
 package com.genc.smpps.maintenance.Repo;
 
-public interface MaintenanceRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MaintenanceRepo extends JpaRepository {
+
 }
