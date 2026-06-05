@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "MaintenanceWorkOrder")
-public class MaintenanceWorkOrder {
+public class MaintenanceWorkOrder{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,7 +13,7 @@ public class MaintenanceWorkOrder {
 
     private int machineId;
 
-    private String maintenanceType;   // PREVENTIVE / BREAKDOWN / CALIBRATION
+    private String maintenanceType; // PREVENTIVE, BREAKDOWN, CALIBRATION
 
     @Temporal(TemporalType.DATE)
     private Date scheduledDate;
@@ -21,11 +21,13 @@ public class MaintenanceWorkOrder {
     @Temporal(TemporalType.DATE)
     private Date completionDate;
 
-    private String workOrderStatus;   // OPEN / IN_PROGRESS / COMPLETED / CANCELLED
+    private String workOrderStatus; // OPEN, IN_PROGRESS, COMPLETED, CANCELLED
 
-    public MaintenanceWorkOrder() {
-    }
+    // Extra fields (needed for your controller methods)
+    private String technicianName;
+    private String sparePartUsed;
 
+    // Getters & Setters
 
     public int getWorkOrderId() {
         return workOrderId;
@@ -73,5 +75,21 @@ public class MaintenanceWorkOrder {
 
     public void setWorkOrderStatus(String workOrderStatus) {
         this.workOrderStatus = workOrderStatus;
+    }
+
+    public String getTechnicianName() {
+        return technicianName;
+    }
+
+    public void setTechnicianName(String technicianName) {
+        this.technicianName = technicianName;
+    }
+
+    public String getSparePartUsed() {
+        return sparePartUsed;
+    }
+
+    public void setSparePartUsed(String sparePartUsed) {
+        this.sparePartUsed = sparePartUsed;
     }
 }
