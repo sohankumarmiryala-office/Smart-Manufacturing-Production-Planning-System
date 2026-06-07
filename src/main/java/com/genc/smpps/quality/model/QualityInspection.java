@@ -1,38 +1,97 @@
 package com.genc.smpps.quality.model;
 
-import jakarta.persistence.*;
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 @Entity
-@Table(name = "quality_inspection")
+@Table(name = "QualityInspection")
 public class QualityInspection {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long inspectionId;
+    private Integer inspectionId;
 
-    private Long orderId;
+    private Integer orderId;
+
     private LocalDate inspectionDate;
-    private int sampleSize;
-    private int defectCount;
-    private String inspectionResult; // PASS, FAIL, REWORK
 
-    // --- Getters and Setters ---
-    public Long getInspectionId() { return inspectionId; }
-    public void setInspectionId(Long inspectionId) { this.inspectionId = inspectionId; }
+    private Integer sampleSize;
 
-    public Long getOrderId() { return orderId; }
-    public void setOrderId(Long orderId) { this.orderId = orderId; }
+    private Integer defectCount;
 
-    public LocalDate getInspectionDate() { return inspectionDate; }
-    public void setInspectionDate(LocalDate inspectionDate) { this.inspectionDate = inspectionDate; }
+    @Enumerated(EnumType.STRING)
+    private InspectionResult inspectionResult;
 
-    public int getSampleSize() { return sampleSize; }
-    public void setSampleSize(int sampleSize) { this.sampleSize = sampleSize; }
+    public enum InspectionResult {
+        PASS,
+        FAIL,
+        REWORK
+    }
 
-    public int getDefectCount() { return defectCount; }
-    public void setDefectCount(int defectCount) { this.defectCount = defectCount; }
+    public QualityInspection() {
+    }
 
-    public String getInspectionResult() { return inspectionResult; }
-    public void setInspectionResult(String inspectionResult) { this.inspectionResult = inspectionResult; }
+    public QualityInspection(Integer orderId, LocalDate inspectionDate, Integer sampleSize,
+                             Integer defectCount, InspectionResult inspectionResult) {
+        this.orderId = orderId;
+        this.inspectionDate = inspectionDate;
+        this.sampleSize = sampleSize;
+        this.defectCount = defectCount;
+        this.inspectionResult = inspectionResult;
+    }
+
+    public Integer getInspectionId() {
+        return inspectionId;
+    }
+
+    public void setInspectionId(Integer inspectionId) {
+        this.inspectionId = inspectionId;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
+
+    public LocalDate getInspectionDate() {
+        return inspectionDate;
+    }
+
+    public void setInspectionDate(LocalDate inspectionDate) {
+        this.inspectionDate = inspectionDate;
+    }
+
+    public Integer getSampleSize() {
+        return sampleSize;
+    }
+
+    public void setSampleSize(Integer sampleSize) {
+        this.sampleSize = sampleSize;
+    }
+
+    public Integer getDefectCount() {
+        return defectCount;
+    }
+
+    public void setDefectCount(Integer defectCount) {
+        this.defectCount = defectCount;
+    }
+
+    public InspectionResult getInspectionResult() {
+        return inspectionResult;
+    }
+
+    public void setInspectionResult(InspectionResult inspectionResult) {
+        this.inspectionResult = inspectionResult;
+    }
 }
